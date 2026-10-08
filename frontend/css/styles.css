@@ -198,6 +198,7 @@ input.in:focus{box-shadow:0 0 0 3px rgba(10,132,255,.45)}
 .dd.open,.dd:focus-visible{outline:0;box-shadow:0 0 0 3px rgba(10,132,255,.45)}.dd:active{transform:scale(.97);transition-duration:.08s}
 @media(hover:hover){.dd:hover{background:var(--fill3)}}
 .fb .dd{flex:1 1 150px}.f .dd{width:100%;margin-top:6px;font-size:1rem;height:46px}
+.side.glass.x{}.ddm.glass{background:rgba(44,44,46,.96)}
 .ddm{position:fixed;z-index:80;overflow:auto;padding:6px;border-radius:18px;animation:ddin var(--spd) var(--sp) both;transform-origin:top left;overscroll-behavior:contain}
 .ddm.up{transform-origin:bottom left}.ddm.still{animation:none}.ddm.out{animation:ddout .16s ease-in forwards;pointer-events:none}
 @keyframes ddin{from{opacity:0;transform:scale(.9) translateY(-6px)}}@keyframes ddout{to{opacity:0;transform:scale(.96)}}
