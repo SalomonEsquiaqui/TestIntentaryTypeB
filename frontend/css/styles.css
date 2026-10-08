@@ -146,7 +146,7 @@ p.sub:empty{display:none}
 
 /* ===== Referencias (maestro / detalle) ===== */
 .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
-.list{display:flex;flex-direction:column;gap:8px;max-height:64vh;overflow:auto;padding:2px;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--s3) transparent}
+.list{display:flex;flex-direction:column;gap:8px;max-height:64vh;overflow:auto;padding:2px;overscroll-behavior:contain}
 .li{display:flex;align-items:center;gap:12px;padding:9px;border-radius:18px;cursor:pointer;border:1px solid transparent;background:var(--s1);transition:background .2s,border-color .25s,box-shadow .25s,transform .12s}
 .li:active{transform:scale(.985)}
 .li.on{border-color:var(--bl);background:rgba(10,132,255,.12);box-shadow:0 0 0 3px rgba(10,132,255,.18)}
@@ -379,3 +379,29 @@ input.in:focus{box-shadow:0 0 0 3px rgba(10,132,255,.45)}
 @media(prefers-reduced-motion:reduce){.fresh .zr,.enter .li{animation:none}}
 
 @media(max-width:760px){.sw .lg{display:none}}
+
+/* ===== Barras de desplazamiento (estilo Apple: finas, redondas, aparecen con suavidad) ===== */
+*{scrollbar-width:thin;scrollbar-color:rgba(235,235,245,.28) transparent}
+@supports selector(::-webkit-scrollbar){
+  *{scrollbar-width:auto;scrollbar-color:auto}
+  ::-webkit-scrollbar{width:14px;height:14px;background:transparent}
+  ::-webkit-scrollbar-track{background:transparent}
+  ::-webkit-scrollbar-thumb{background:rgba(235,235,245,.22);background-clip:content-box;border:4px solid transparent;border-radius:999px;min-height:48px;min-width:48px;transition:background .2s}
+  ::-webkit-scrollbar-thumb:hover{background:rgba(235,235,245,.42);background-clip:content-box}
+  ::-webkit-scrollbar-thumb:active{background:rgba(235,235,245,.6);background-clip:content-box}
+  ::-webkit-scrollbar-corner{background:transparent}
+  .mod::-webkit-scrollbar-track{margin:22px 0}.ddm::-webkit-scrollbar-track{margin:8px 0}
+  .ddm::-webkit-scrollbar,.list::-webkit-scrollbar{width:12px}
+  .ddm::-webkit-scrollbar-thumb,.list::-webkit-scrollbar-thumb{border-width:3.5px}
+}
+html{scrollbar-gutter:auto}
+
+/* ===== Filtro de tallas múltiple ===== */
+.dd.on{background:rgba(10,132,255,.18);color:var(--bl2)}.dd.on .ic{color:var(--bl2)}
+.ddh{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 10px 9px;margin:0 0 4px;border-bottom:1px solid var(--sep);font-size:.74rem;font-weight:600;color:var(--t2);letter-spacing:.01em}
+.ddh button{all:unset;cursor:pointer;color:var(--bl2);font-weight:600;border-radius:6px;padding:2px 4px;transition:opacity .2s}.ddh button:focus-visible{outline:2px solid var(--bl)}.ddh button:active{opacity:.6}
+.ddm.multi .ddi.sel{color:var(--t);font-weight:600}
+.ddc{margin-left:auto;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--bl);color:#fff;flex:none;opacity:0;transform:scale(.4);transition:transform var(--spbd) var(--spb),opacity .15s}
+.ddi.sel .ddc{opacity:1;transform:none}.ddc .ic{width:13px;height:13px;margin:0;stroke-width:3.2}
+.ddi.dis{opacity:.38;cursor:not-allowed}
+.gsz span.hit{background:rgba(10,132,255,.24);box-shadow:inset 0 0 0 1px rgba(10,132,255,.55)}
