@@ -405,3 +405,11 @@ html{scrollbar-gutter:auto}
 .ddi.sel .ddc{opacity:1;transform:none}.ddc .ic{width:13px;height:13px;margin:0;stroke-width:3.2}
 .ddi.dis{opacity:.38;cursor:not-allowed}
 .gsz span.hit{background:rgba(10,132,255,.24);box-shadow:inset 0 0 0 1px rgba(10,132,255,.55)}
+
+/* ===== Botón sutil: copiar lista ===== */
+.vr{display:flex;align-items:center;gap:14px}
+.ib.ghost{width:34px;height:34px;background:transparent;color:var(--t3);box-shadow:inset 0 0 0 1px var(--hair)}
+.ib.ghost .ic{width:17px;height:17px}
+@media(hover:hover){.ib.ghost:hover{background:var(--fill2);color:var(--t)}}
+.ib.ok,.ib.ok:hover{background:rgba(48,209,88,.16);color:var(--green);box-shadow:inset 0 0 0 1px rgba(48,209,88,.4);animation:pop var(--spbd) var(--spb)}
+@keyframes pop{from{transform:scale(.7)}}
