@@ -61,6 +61,30 @@ app.post('/api/movements/:id/void', async (req, res) => {
   res.json(data);
 });
 
+// ===== Link directo de cada jean (se comparte entre todas las tallas de la referencia) =====
+// Solo se aceptan links http/https; se actualiza únicamente la columna link (no toca cantidades).
+const cleanLink = v => {
+  v = String(v ?? '').trim();
+  if (!v) return '';
+  if (v.length > 500) return null;
+  try {
+    const u = new URL(/^https?:\/\//i.test(v) ? v : 'https://' + v);
+    return /^https?:$/.test(u.protocol) && u.hostname.includes('.') ? u.href : null;
+  } catch { return null; }
+};
+app.post('/api/links', async (req, res) => {
+  const link = cleanLink(req.body?.link);
+  if (link === null) return res.status(400).json({ error: 'Link no válido' });
+  const ids = a => (Array.isArray(a) ? a.map(String).slice(0, 500) : []);
+  for (const [k, t] of [['inventory', 'tib_inventory'], ['references', 'tib_references']]) {
+    const list = ids(req.body?.[k]);
+    if (!list.length) continue;
+    const { error } = await supabase.from(t).update({ link }).in('id', list);
+    if (error) return res.status(500).json({ error: friendly(error) });
+  }
+  res.json({ ok: true, link });
+});
+
 const guard = (req, res, next) => {
   if (!TABLES[req.params.t]) return res.status(404).json({ error: 'Recurso no encontrado' });
   next();

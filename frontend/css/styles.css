@@ -413,3 +413,23 @@ html{scrollbar-gutter:auto}
 @media(hover:hover){.ib.ghost:hover{background:var(--fill2);color:var(--t)}}
 .ib.ok,.ib.ok:hover{background:rgba(48,209,88,.16);color:var(--green);box-shadow:inset 0 0 0 1px rgba(48,209,88,.4);animation:pop var(--spbd) var(--spb)}
 @keyframes pop{from{transform:scale(.7)}}
+
+/* ===== Botón de Drive (Referencias) ===== */
+.btn.ghost{background:transparent;box-shadow:inset 0 0 0 1px var(--hair);color:var(--t2);width:42px;padding:0;text-decoration:none}
+.btn.ghost .ic{width:19px;height:19px}
+.bar>.btn.ghost{flex:0 0 42px}
+@media(hover:hover){
+  .btn.ghost:hover{background:var(--fill2);color:var(--t)}
+  .btn.ghost[data-tip]:hover::after{left:auto;right:0;transform:none;animation:tipr .2s var(--sp) both}
+}
+@keyframes tipr{from{opacity:0;transform:translateY(4px)}}
+
+/* ===== Lupa de link sobre la foto del detalle ===== */
+.phw{position:relative}
+.lupa{position:absolute;top:10px;right:10px;width:36px;height:36px;border:0;border-radius:50%;display:grid;place-items:center;padding:0;color:rgba(255,255,255,.88);background:rgba(28,28,30,.5);backdrop-filter:blur(14px) saturate(180%);-webkit-backdrop-filter:blur(14px) saturate(180%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);cursor:pointer;touch-action:manipulation;user-select:none;-webkit-user-select:none;opacity:.82;transition:transform var(--spd) var(--sp),background .2s,opacity .2s}
+.lupa .ic{width:18px;height:18px;stroke-width:2}
+.lupa:active{transform:scale(.88);transition-duration:.08s}
+.lupa.has{background:rgba(10,132,255,.82);color:#fff;opacity:1}
+.lupa.has::after{content:"";position:absolute;top:2px;right:2px;width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 2px rgba(28,28,30,.9)}
+@media(hover:hover){.lupa:hover{opacity:1;background:rgba(58,58,60,.78)}.lupa.has:hover{background:var(--bl)}}
+@media(prefers-reduced-transparency:reduce){.lupa{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--s3)}.lupa.has{background:var(--bl)}}
